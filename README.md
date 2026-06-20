@@ -18,7 +18,7 @@ Vigilator.AI closes that window by analyzing sites *on the fly*, instead of only
 
 The extension runs a layered check on every page you visit, escalating only as needed — cheap checks first, heavier analysis only if something looks off.
 
-![Flowchart showing the working of the browser extension](images/flowchart.png)
+![Flowchart showing the working of the browser extension](flowchart.png)
 
 **Step by step:**
 
@@ -31,7 +31,7 @@ The extension runs a layered check on every page you visit, escalating only as n
 
 ### System architecture
 
-![Architecture of the browser extension](images/architecture.png)
+![Architecture of the browser extension](architecture.png)
 
 At a high level: the **browser extension** is the only thing running locally, and it talks to a small set of **local Flask APIs** that do the actual model inference (URL model + content model) and the blocklist/Tranco lookups. Verdicts come back as one of three outcomes — flag it, mark it suspicious and ask the user, or clear it and resume browsing — and every outcome gets logged for the dashboard.
 
@@ -63,13 +63,13 @@ Running both means a site has to fool two independently-trained models to slip t
 
 Loaded as an unpacked extension during development, sitting quietly in the toolbar until it's needed:
 
-![Loading of extension to the browser](images/extension-setup.png)
+![Loading of extension to the browser](extension-setup.png)
 
 Behind the scenes, four local Flask services come up — `trancocheck`, `app` (URL analysis), `content` (content analysis), and the `central_api` that coordinates between them — all spun up from a single `manage.py`.
 
 And here's the part that matters: a real phishing page caught mid-browse, with Chrome surfacing the warning the instant the page is flagged.
 
-![Warning notification to user about potential phishing attack](images/phishing-warning.png)
+![Warning notification to user about potential phishing attack](phishing-warning.png)
 
 ---
 
@@ -79,15 +79,15 @@ Blocked sites, scan history, and account settings live in a companion web dashbo
 
 **Login & authentication**
 
-![Login and Authentication page](images/login-page.png)
+![Login and Authentication page](login-page.png)
 
 **Dashboard — your scanning stats at a glance**
 
-![Dashboard page showing scanning statistics](images/dashboard.png)
+![Dashboard page showing scanning statistics](dashboard.png)
 
 **Blocklist — every flagged site, with the reason it was caught**
 
-![Blocklist page showing blocked URLs and reasons](images/blocklist.png)
+![Blocklist page showing blocked URLs and reasons](blocklist.png)
 
 ---
 
